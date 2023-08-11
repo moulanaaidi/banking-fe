@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Make sure to import Routes and Route
+import { Layout, Menu } from 'antd';
+import CreateCustomer from './components/CreateCustomer';
+import InquireCustomer from './components/InquireCustomer';
+import 'antd/dist/reset.css';
+
+const { Header, Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout>
+        <Header>
+          <Menu theme="dark" mode="horizontal">
+            <Menu.Item key="1">
+              <Link to="/create">Create Customer</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/inquire">Inquire Customer</Link>
+            </Menu.Item>
+          </Menu>
+        </Header>
+        <Content style={{ padding: '50px' }}>
+          <Routes>
+            <Route path="/create" element={<CreateCustomer />} />
+            <Route path="/inquire" element={<InquireCustomer />} />
+          </Routes>
+        </Content>
+      </Layout>
+    </Router>
   );
 }
 
